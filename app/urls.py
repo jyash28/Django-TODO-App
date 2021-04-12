@@ -1,11 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from django.shortcuts import HttpResponse
-
-
-def home(request):
-    print("hello")
-    return HttpResponse("hello world")           
+from app.views import home
+# from django.http import HttpResponse
 
 urlpatterns = [
     path('',home)
