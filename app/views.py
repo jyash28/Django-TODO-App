@@ -8,9 +8,11 @@ from app.models import TODO
 # Create your views here
 
 def home(request):
-    form = TODOForm()
-    todos = TODO.objects.all()
-    return render(request,"index.html",context={'form':form,'todos': todos})
+    if request.user.is_authenticated:
+        user = request.user
+        form = TODOForm()
+        todos = TODO.objects.filter(user= user)
+        return render(request,"index.html",context={'form':form,'todos': todos})
 
 
 def login(request):
