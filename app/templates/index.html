@@ -18,31 +18,49 @@
       </div>
 
       <div class="col">
-        <div class="border">
+        <div class="shadow">
+          {% if todos|length == 0 %}
+
+          <div class="p-4">
+            <br>
+            <br>
+            <div class="alert alert-info text-center">
+              <p class="" style="font-size: 30px">No Todos</p>
+            <br>
+            <br>
+            </div>
+          </div>
+
+          {% else %}
           <div>
             <table class="table">
-              <thead >
+              <thead>
                 <tr>
                   <th>#</th>
                   <th>Title</th>
                   <th>Status</th>
                   <th>Priority</th>
+                  <th>🗑️</th>
                 </tr>
               </thead>
               <tbody>
-                
-                  {% for todo in todos %}
-                  <tr>
+                {% for todo in todos %}
+                <tr>
                   <td>{{forloop.counter}}</td>
                   <td>{{todo.title}}</td>
                   <td>{{todo.status}}</td>
                   <td>{{todo.priority}}</td>
-                  </tr>
-                  {% endfor %}
-                
+                  <td>
+                    <a href="/delete-todo/{{todo.id}}" class="btn btn-danger"
+                      >delete
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
+          {% endif %}
         </div>
       </div>
     </div>
