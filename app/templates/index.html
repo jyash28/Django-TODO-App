@@ -35,25 +35,40 @@
           <div>
             <table class="table">
               <thead>
-                <tr>
+                <tr style="text-align: center;">
                   <th>#</th>
                   <th>Title</th>
                   <th>Status</th>
                   <th>Priority</th>
-                  <th>🗑️</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {% for todo in todos %}
-                <tr>
+                <tr style="text-align: center;">
                   <td>{{forloop.counter}}</td>
                   <td>{{todo.title}}</td>
-                  <td>{{todo.status}}</td>
+                  <td>
+                    {% if todo.status == 'C' %}
+                    ✅
+                    {% else %}
+                    🕑   
+                    {% endif %}
+                  </td>
                   <td>{{todo.priority}}</td>
                   <td>
-                    <a href="/delete-todo/{{todo.id}}" class="btn btn-danger"
-                      >delete
+                    <a href="/delete-todo/{{todo.id}}"title="Delete" class="btn"
+                      >🗑️
                     </a>
+                    {% if todo.status == 'P' %}
+                    <a href="/change-status/{{todo.id}}/C"title="Mark Completed" class="btn"
+                    >✅
+                    </a>
+                    {% else %}
+                    <a href="/change-status/{{todo.id}}/P"title="Mark Pending" class="btn"
+                    >🕑
+                    </a>
+                    {% endif %}
                   </td>
                 </tr>
                 {% endfor %}

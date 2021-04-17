@@ -19,7 +19,7 @@ class TODO(models.Model):
         ('7','7️⃣'), 
         ('8','8️⃣ '), 
         ('9','9️⃣'), 
-        ('10','🔟'),    
+        # ('10','🔟'),    
     ]
     
     title = models.CharField(max_length=50)
